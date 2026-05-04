@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyimbo Zone</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff416c, #1e90ff);
+  color: white;
+}
+
+  .trending {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px;
+}
+
+.trending::-webkit-scrollbar {
+  display: none;
+}
+
+.trend-card {
+  min-width: 200px;
+  background: rgba(0,0,0,0.7);
+  padding: 8px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.trend-card iframe {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.trend-card p {
+  font-size: 14px;
+  margin-top: 5px;
+}
+  
+header {
+  text-align: center;
+  padding: 20px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.search-box {
+  text-align: center;
+  margin: 15px 0;
+}
+
+#searchInput {
+  width: 85%;
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.buttons {
+  text-align: center;
+  margin: 10px;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background: white;
+  color: black;
+  font-weight: bold;
+}
+
+.container {
+  padding: 10px;
+}
+
+.card {
+  background: rgba(0,0,0,0.7);
+  padding: 12px;
+  margin: 12px 0;
+  border-radius: 15px;
+}
+
+iframe {
+  width: 100%;
+  border-radius: 10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>🎧 Nyimbo Zone</header>
+
+<div class="search-box">
+  <input type="text" id="searchInput" onkeyup="searchContent()" placeholder="Search videos or audio...">
+</div>
+
+<div class="buttons">
+  <button onclick="filter('all')">All</button>
+  <button onclick="filter('amapiano')">Amapiano</button>
+  <button onclick="filter('hiphop')">Hip-Hop</button>
+  <button onclick="filter('trap')">Trap</button>
+</div>
+
+<div class="container">
+  
+  <h2>🔥 Trending</h2>
+
+  <div class="trending">
+
+    <div class="trend-card">
+      <iframe height="120" src="https://www.youtube.com/embed/ssYZnUyAqyg"></iframe>
+      <p>Currentkid - Trouble Maker</p>
+    </div>
+
+    <div class="trend-card">
+      <iframe height="120" src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
+      <p>Trending Song 2</p>
+    </div>
+
+    <div class="trend-card">
+      <iframe height="120" src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
+      <p>Trending Song 3</p>
+    </div>
+
+  </div>
+
+  <div class="card" data-genre="amapiano">
+    <h3>current kid - trouble maker</h3>
+    <iframe height="200" src="https://www.youtube.com/embed/ssYZnUyAqyg"></iframe>
+  </div>
+  
+   <h3>current kid - trouble</h3>
+    <iframe height="200" src="https://www.youtube.com/embed/ssYZnUyAqyg"></iframe>
+  </div>
+  
+   <h3>current kid - maker</h3>
+    <iframe height="200" src="https://www.youtube.com/embed/ssYZnUyAqyg"></iframe>
+  </div>
+
+  <div class="card" data-genre="hiphop">
+    <h3>Hip-Hop Video</h3>
+    <iframe height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
+  </div>
+
+  <div class="card" data-genre="hip-hop">
+    <h3>Trap Audio</h3>
+    <iframe height="120" src="https://audiomack.com/embed/150654717"></iframe>
+  </div>
+
+</div>
+
+<script>
+let currentGenre = "all";
+
+function filter(genre) {
+  currentGenre = genre;
+  applyFilters();
+}
+
+function searchContent() {
+  applyFilters();
+}
+
+function applyFilters() {
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let items = document.querySelectorAll(".card");
+
+  items.forEach(item => {
+    let text = item.innerText.toLowerCase();
+    let genre = item.dataset.genre;
+
+    let matchesGenre = (currentGenre === "all" || genre === currentGenre);
+    let matchesSearch = text.includes(input);
+
+    if (matchesGenre && matchesSearch) {
+      item.style.display = "block";
+    } else {
+      item.style.display = "none";
+    }
+  });
+}
+</script>
+
+</body>
+</html>
