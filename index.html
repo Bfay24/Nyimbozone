@@ -13,8 +13,23 @@ body {
   color: white;
 }
 
+.arrow {
+  background: rgba(0,0,0,0.6);
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.arrow:hover {
+  background: black;
+}
+
   .trending {
   display: flex;
+  align-items: center;
   overflow-x: auto;
   gap: 10px;
   padding: 10px;
@@ -118,37 +133,56 @@ iframe {
   <h2>🔥 Trending</h2>
 
   <div class="trending">
+    
+    <button class="arrow left" onclick="scrollTrending(-1)">❮</button>
+
+  <div class="trending" id="trendingBox">
+
+    <!--TRENDING TOP 5 -->
+    
+    <div class="trend-card">
+      <iframe height="120" src="https://www.youtube.com/embed/OpWM9-4l_qpSGSBF"></iframe>
+      <p>Joe ikon - Venda</p>
+    </div>
 
     <div class="trend-card">
       <iframe height="120" src="https://www.youtube.com/embed/ssYZnUyAqyg"></iframe>
-      <p>Currentkid - Trouble Maker</p>
+      <p>currentkid - trouble maker</p>
     </div>
 
     <div class="trend-card">
-      <iframe height="120" src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
-      <p>Trending Song 2</p>
-    </div>
-
-    <div class="trend-card">
-      <iframe height="120" src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
-      <p>Trending Song 3</p>
+      <iframe height="120" src="https://www.youtube.com/embed/Ut4CAQCX3nxMkbOT"></iframe>
+      <p>Joe Ikon - Pang'ono'</p>
     </div>
 
   </div>
+    <button class="arrow right" onclick="scrollTrending(1)">❯</button>
+  </div>
 
+ <!-- 🎵 AMAPIANO VIDEO LINKS START -->
+  
   <div class="card" data-genre="amapiano">
-    <h3>current kid - trouble maker</h3>
+    <h3>Joe Ikon ft Zeze - Limodzi</h3>
+    <iframe height="200" src="https://www.youtube.com/embed/HopUlv5EaW8Js3pa"></iframe>
+  </div>
+  
+  <div class="card" data-genre="amapiano">
+    <h3>Currentkid - Trouble maker</h3>
     <iframe height="200" src="https://www.youtube.com/embed/ssYZnUyAqyg"></iframe>
   </div>
   
-   <h3>current kid - trouble</h3>
-    <iframe height="200" src="https://www.youtube.com/embed/ssYZnUyAqyg"></iframe>
+  <div class="card" data-genre="amapiano">
+   <h3>Joe Ikon - Venda</h3>
+    <iframe height="200" src="https://www.youtube.com/embed/OpWM9-4l_qpSGSBF"></iframe>
   </div>
   
-   <h3>current kid - maker</h3>
-    <iframe height="200" src="https://www.youtube.com/embed/ssYZnUyAqyg"></iframe>
+  <div class="card" data-genre="amapiano">
+   <h3>Fada Moti - Jump</h3>
+    <iframe height="200" src="https://www.youtube.com/embed/18LZTDxnC8f5CCRg"></iframe>
   </div>
 
+  <!-- 🎵 HIP-HOP VIDEO LINKS START -->
+  
   <div class="card" data-genre="hiphop">
     <h3>Hip-Hop Video</h3>
     <iframe height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
@@ -168,6 +202,7 @@ function filter(genre) {
   currentGenre = genre;
   applyFilters();
 }
+  
 
 function searchContent() {
   applyFilters();
@@ -189,7 +224,17 @@ function applyFilters() {
     } else {
       item.style.display = "none";
     }
+    
+function scrollTrending(direction) {
+  const container = document.getElementById("trendingBox");
+  
+  container.scrollBy({
+    left: direction * 200,
+    behavior: "smooth"
   });
+}
+
+  container.scrollLeft += direction * 220;
 }
 </script>
 
